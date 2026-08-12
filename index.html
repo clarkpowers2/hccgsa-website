@@ -1,255 +1,998 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="HCCGSA LLC builds operating systems for independent hotels and food businesses.">
-  <title>HCCGSA LLC | Guest Intelligence OS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <style>
-    :root { --navy:#1A2744; --gold:#C9A84C; --teal:#2A9D8F; --ivory:#FAF8F4; --white:#FFFFFF; --slate:#374151; --ink:#0D1117; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; color:var(--slate); background:var(--white); font-family:Inter, sans-serif; line-height:1.65; }
-    a { color:inherit; text-decoration:none; }
-    .site-nav { position:fixed; z-index:20; top:0; width:100%; padding:18px 5vw; display:flex; align-items:center; justify-content:space-between; color:var(--navy); background:rgba(255,255,255,.94); box-shadow:0 2px 18px rgba(26,39,68,.08); transition:background .25s, box-shadow .25s; }
-    .site-nav.over-hero { background:transparent; box-shadow:none; color:var(--white); }
-    .brand { font:700 18px/1.2 'Playfair Display', serif; letter-spacing:0; white-space:nowrap; }
-    .nav-right { display:flex; align-items:center; gap:27px; font-size:13px; font-weight:500; }
-    .nav-right a { min-height:44px; display:flex; align-items:center; }
-    .nav-phone { color:var(--navy); }
-    .over-hero .nav-phone { color:var(--white); }
-    .menu-button { display:none; width:44px; height:44px; border:0; background:transparent; color:currentColor; cursor:pointer; }
-    .menu-button span, .menu-button span::before, .menu-button span::after { display:block; width:21px; height:2px; background:currentColor; content:""; margin:auto; position:relative; }
-    .menu-button span::before { position:absolute; top:-7px; }
-    .menu-button span::after { position:absolute; top:7px; }
-    .hero { position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding:145px 8vw 95px; color:var(--white); background:var(--navy); }
-    #particles { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
-    .hero-content { position:relative; z-index:1; max-width:880px; }
-    .eyebrow, .section-label { margin:0 0 18px; font-size:12px; line-height:1.3; letter-spacing:.16em; font-weight:600; }
-    .eyebrow { color:var(--gold); }
-    .section-label { color:var(--teal); }
-    h1, h2, h3, .quote { font-family:'Playfair Display', serif; font-weight:600; letter-spacing:0; }
-    h1 { max-width:900px; margin:0 0 25px; color:var(--white); font-size:clamp(42px, 6vw, 64px); line-height:1.08; }
-    .hero-sub { max-width:690px; margin:0; color:rgba(255,255,255,.7); font-size:20px; line-height:1.55; }
-    .actions { display:flex; flex-wrap:wrap; gap:14px; margin-top:37px; }
-    .button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; padding:12px 20px; border:1px solid transparent; font-size:14px; font-weight:600; transition:transform .2s, background .2s, color .2s; }
-    .button:hover { transform:translateY(-2px); }
-    .button-gold { background:var(--gold); color:var(--navy); }
-    .button-outline { border-color:rgba(255,255,255,.8); color:var(--white); }
-    .button-outline:hover { background:var(--white); color:var(--navy); }
-    .section { padding:90px 8vw; }
-    .section-inner { max-width:1100px; margin:0 auto; }
-    .centered { text-align:center; }
-    .condition { background:var(--ivory); }
-    h2 { margin:0 auto 24px; color:var(--navy); font-size:clamp(36px, 4.4vw, 48px); line-height:1.14; }
-    .body-copy { max-width:680px; margin:0 auto; font-size:18px; line-height:1.75; }
-    .body-copy p { margin:0 0 22px; }
-    .body-copy p:last-child { margin-bottom:0; }
-    .category { background:var(--white); }
-    .category .body-copy { text-align:left; }
-    .category .body-copy .emphasis { color:var(--navy); font-weight:600; }
-    .category-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; margin-top:58px; }
-    .category-item { border-top:2px solid var(--gold); padding-top:18px; }
-    .category-item h3 { margin:0 0 10px; color:var(--navy); font-size:24px; }
-    .category-item p { margin:0; font-size:15px; line-height:1.7; }
-    .stats { background:var(--navy); color:var(--white); }
-    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:30px; text-align:center; }
-    .stat-number { min-height:79px; display:block; color:var(--gold); font:700 clamp(46px, 5vw, 64px)/1.15 'Playfair Display',serif; }
-    .stat-label { display:block; color:rgba(255,255,255,.6); font-size:14px; line-height:1.5; }
-    .products { background:var(--ivory); }
-    .products h2 { max-width:720px; margin-left:0; font-size:40px; }
-    .product-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:22px; margin-top:45px; }
-    .product-card { display:flex; flex-direction:column; min-height:285px; padding:30px; border:1px solid rgba(201,168,76,.1); border-radius:20px; background:var(--white); box-shadow:0 4px 24px rgba(0,0,0,.06); transition:transform .25s, box-shadow .25s; }
-    .product-card:hover { transform:translateY(-4px); box-shadow:0 12px 34px rgba(0,0,0,.11); }
-    .badge { align-self:flex-start; padding:5px 9px; border-radius:2px; font-size:10px; line-height:1.2; font-weight:600; letter-spacing:.1em; }
-    .live { background:#3E9C6E; color:var(--white); }
-    .soon { background:var(--gold); color:var(--navy); }
-    .development { background:var(--teal); color:var(--white); }
-    .product-card h3 { margin:22px 0 11px; color:var(--navy); font-size:27px; line-height:1.2; }
-    .product-card p { margin:0; font-size:15px; line-height:1.65; }
-    .product-card .product-link { margin-top:11px; color:var(--teal); font-size:14px; font-weight:600; }
-    .product-card .card-cta { margin-top:auto; padding-top:24px; color:var(--navy); font-size:14px; font-weight:600; }
-    .about { background:var(--white); }
-    .about h2, .about .body-copy { margin-left:0; }
-    .quote { max-width:760px; margin:50px 0 0; padding:18px 0 18px 24px; border-left:3px solid var(--gold); color:var(--navy); font-size:24px; font-style:italic; line-height:1.45; }
-    .quote cite { display:block; margin-top:16px; font-family:Inter,sans-serif; font-size:14px; font-style:normal; font-weight:500; }
-    .contact { background:var(--navy); color:var(--white); text-align:center; }
-    .contact h2 { color:var(--white); }
-    .contact-sub { max-width:640px; margin:0 auto; color:rgba(255,255,255,.7); font-size:18px; }
-    .contact-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:25px; margin-top:52px; }
-    .contact-item { display:flex; flex-direction:column; align-items:center; gap:5px; }
-    .contact-item a { color:var(--teal); font-size:16px; font-weight:500; }
-    .contact-item .phone { color:var(--gold); font:700 36px/1.2 'Playfair Display',serif; }
-    .contact-item small { color:rgba(255,255,255,.5); font-size:14px; }
-    footer { padding:40px 5vw 30px; color:rgba(255,255,255,.65); background:var(--ink); font-size:12px; }
-    .footer-main { display:grid; grid-template-columns:1fr 2fr 1fr; align-items:center; gap:20px; }
-    footer strong { color:var(--white); font:700 16px/1.2 'Playfair Display',serif; }
-    .footer-center { text-align:center; }
-    .footer-right { text-align:right; }
-    .trademarks { max-width:820px; margin:24px auto 0; color:rgba(255,255,255,.3); text-align:center; line-height:1.5; }
-    @media (max-width:760px) {
-      .site-nav { padding:13px 5vw; }
-      .menu-button { display:block; }
-      .nav-right { position:absolute; top:70px; left:4vw; right:4vw; display:none; flex-direction:column; align-items:stretch; gap:0; padding:10px 18px; color:var(--navy); background:var(--white); box-shadow:0 8px 20px rgba(26,39,68,.12); }
-      .nav-right.open { display:flex; }
-      .nav-right a { min-height:48px; border-bottom:1px solid rgba(26,39,68,.08); }
-      .nav-right a:last-child { border:0; }
-      .nav-phone, .over-hero .nav-phone { color:var(--navy); }
-      .hero { min-height:760px; padding:130px 7vw 80px; }
-      .hero-sub { font-size:18px; }
-      .section { padding:70px 7vw; }
-      .category-grid, .contact-grid { grid-template-columns:1fr; gap:30px; }
-      .stats-grid { grid-template-columns:repeat(2,1fr); gap:38px 20px; }
-      .product-grid { grid-template-columns:1fr; }
-      .products h2 { font-size:34px; }
-      .footer-main { grid-template-columns:1fr; text-align:center; }
-      .footer-right { text-align:center; }
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0" />
+
+  <title>
+    HCCGSA LLC™ | Hospitality Guest Intelligence
+    Architecture &amp; Advocacy
+  </title>
+
+  <meta name="description"
+    content="HCCGSA LLC builds Guest Intelligence OS™
+    infrastructure for independent hotels. Creators of
+    Haven Memory OS™ and The Memory Gap™ framework.
+    Founded by Nathaniel Clarke,
+    ORCID: 0009-0005-5311-1358.
+    Philadelphia, PA. Est. 2019." />
+
+  <meta name="keywords"
+    content="Guest Intelligence OS, Haven Memory OS,
+    The Memory Gap, Institutional Memory Loss,
+    independent hotels, hospitality technology,
+    HCCGSA LLC, Nathaniel Clarke, ARCHITEK N ADVOCACY,
+    hotel guest experience, service recovery" />
+
+  <meta name="author" content="Nathaniel Clarke,
+    ORCID: 0009-0005-5311-1358, HCCGSA LLC" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"
+    content="HCCGSA LLC™ | Guest Intelligence
+    Architecture for Independent Hotels" />
+  <meta property="og:description"
+    content="We did not join the hospitality technology
+    industry. We built a new category inside it.
+    Guest Intelligence OS™ — the operating system
+    of guest memory. Built by HCCGSA LLC™,
+    Philadelphia." />
+  <meta property="og:url"
+    content="https://hccgsa.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image"
+    content="https://hccgsa.com/assets/hccgsa_branded.png" />
+  <meta property="og:site_name"
+    content="HCCGSA LLC™" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card"
+    content="summary_large_image" />
+  <meta name="twitter:title"
+    content="HCCGSA LLC™ | Guest Intelligence OS™" />
+  <meta name="twitter:description"
+    content="Building AI-powered institutional memory
+    for independent hotels. Creators of
+    Haven Memory OS™ and The Memory Gap™ framework." />
+  <meta name="twitter:image"
+    content="https://hccgsa.com/assets/hccgsa_branded.png" />
+
+  <!-- Favicon -->
+  <link rel="icon"
+    type="image/png"
+    href="/assets/hccgsa_branded.png" />
+  <link rel="apple-touch-icon"
+    href="/assets/hccgsa_branded.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect"
+    href="https://fonts.googleapis.com" />
+  <link rel="preconnect"
+    href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?
+    family=Cinzel:wght@400;600;700&
+    family=Playfair+Display:wght@700;900&
+    family=Inter:wght@300;400;500;600&
+    display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="/styles.css" />
 </head>
+
 <body>
-  <nav class="site-nav over-hero" aria-label="Primary navigation">
-    <a class="brand" href="#top">HCCGSA LLC</a>
-    <button class="menu-button" aria-label="Open navigation" aria-expanded="false"><span></span></button>
-    <div class="nav-right">
+
+<!-- NAVIGATION -->
+<header class="site-nav" id="top">
+  <div class="nav-inner">
+
+    <!-- Left: Logo + Brand -->
+    <a href="#top" class="nav-brand">
+      <img
+        src="/assets/hccgsa_branded.png"
+        alt="HCCGSA LLC Seal"
+        class="nav-logo"
+      />
+      <div class="nav-brand-text">
+        <span class="nav-brand-name">HCCGSA LLC™</span>
+        <span class="nav-brand-tagline">
+          ARCHITEK N ADVOCACY™
+        </span>
+      </div>
+    </a>
+
+    <!-- Right: Navigation links -->
+    <nav class="nav-links" aria-label="Main navigation">
       <a href="#work">Our Work</a>
       <a href="#category">The Category</a>
+      <a href="#research">The Research</a>
+      <a href="#newsletter">The Newsletter</a>
+      <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a class="nav-phone" href="tel:+12678489603">(267) 848-9603</a>
+      <a href="tel:+12678489603" class="nav-phone">
+        (267) 848-9603
+      </a>
+    </nav>
+
+    <!-- Mobile hamburger -->
+    <button class="nav-hamburger"
+      aria-label="Open navigation menu"
+      aria-expanded="false">
+      ☰
+    </button>
+
+  </div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="section-hero" id="hero">
+  <div class="section-inner">
+
+    <div class="hero-eyebrow">
+      PHILADELPHIA · FOUNDED 2019 ·
+      ORCID&nbsp;0009-0005-5311-1358
     </div>
-  </nav>
 
-  <main id="top">
-    <section class="hero">
-      <canvas id="particles" aria-hidden="true"></canvas>
-      <div class="hero-content">
-        <p class="eyebrow">PHILADELPHIA · FOUNDED 2019</p>
-        <h1>We did not join the hospitality technology industry.<br>We built a new category inside it.</h1>
-        <p class="hero-sub">HCCGSA LLC builds the operating systems that independent hotels and food businesses have been waiting for — without knowing they were waiting for them.</p>
-        <div class="actions">
-          <a class="button button-gold" href="#work">See Our Work</a>
-          <a class="button button-outline" href="tel:+12678489603">Call Us — (267) 848-9603</a>
+    <img
+      src="/assets/hccgsa_branded.png"
+      alt="HCCGSA LLC — Hotel Chamber of Commerce,
+           Guest Services Advocacy"
+      class="hero-logo"
+    />
+
+    <h1 class="hero-headline">
+      We did not join the hospitality<br />
+      technology industry.<br />
+      We built a new category inside it.
+    </h1>
+
+    <p class="hero-subheadline">
+      HCCGSA LLC designs the accountability systems
+      that independent hotels have been waiting for —
+      without knowing they were waiting for them.
+      Built through ARCHITEK N ADVOCACY™: design the
+      system, assign ownership, verify recovery.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#work" class="btn-primary">
+        See Our Work
+      </a>
+      <a href="tel:+12678489603" class="btn-secondary">
+        Call Us — (267) 848-9603
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROBLEM SECTION -->
+<section class="section-problem" id="problem">
+  <div class="section-inner section-inner--narrow">
+
+    <div class="section-eyebrow">THE PROBLEM WE NAMED</div>
+
+    <h2>
+      Every independent hotel in America<br />
+      has Institutional Alzheimer's.
+    </h2>
+
+    <p>
+      The moment a shift ends — everything your team
+      learned about a guest that day disappears. The room
+      that was too cold. The name they prefer. The problem
+      that was never fully resolved.
+    </p>
+
+    <p class="problem-gone">Gone.</p>
+
+    <p>
+      HCCGSA LLC uses the term
+      <em>Institutional Alzheimer's</em> as an
+      organizational metaphor — a deliberate framework
+      to name the pattern of systemic operational memory
+      loss that recurs in hotel environments at every
+      shift change, staff departure, and system handoff.
+      The descriptive term for this organizational pattern
+      is <em>Institutional Memory Loss</em>.
+    </p>
+
+    <p>
+      Both terms are part of the HCCGSA LLC research
+      framework authored by Nathaniel Clarke,
+      ORCID:&nbsp;0009-0005-5311-1358.
+    </p>
+
+    <div class="problem-divider">————</div>
+
+    <p class="problem-conclusion">
+      This is not a service problem.<br />
+      It is an infrastructure problem.<br />
+      And we built the infrastructure to fix it.
+    </p>
+
+  </div>
+</section>
+
+<!-- MEMORY GAP FRAMEWORK SECTION -->
+<section class="section-framework" id="research">
+  <div class="section-inner">
+
+    <div class="section-eyebrow">THE NAMED FRAMEWORK</div>
+
+    <h2>The Memory Gap™</h2>
+
+    <p>
+      The Memory Gap™ is the distance between what a hotel
+      knows about its guests and what it can actually act
+      on — across shifts, staff turnover, and disconnected
+      systems.
+    </p>
+
+    <p>
+      It is not a technology failure.<br />
+      It is an institutional one.
+    </p>
+
+    <p>
+      26 guests leave silently for every one who complains.
+      They do not call the front desk. They check out
+      quietly. They book somewhere else. They never
+      say why.
+    </p>
+
+    <p>
+      A 200-room independent hotel loses an estimated
+      $4.3&nbsp;million to $13.6&nbsp;million every year
+      from guests who had a problem, said nothing,
+      and never came back.
+    </p>
+
+    <p>
+      The Memory Gap™ makes this loss visible,
+      measurable, and closeable.
+    </p>
+
+    <div class="framework-attribution">
+      Published by Nathaniel Clarke ·
+      ORCID:&nbsp;0009-0005-5311-1358 ·
+      HCCGSA LLC™ · 2024 ·
+      <a
+        href="https://haven-mos.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >haven-mos.org</a>
+    </div>
+
+    <!-- Stats — HARDCODED STATIC TEXT — NO ANIMATION -->
+    <div class="stats-row">
+
+      <div class="stat-block">
+        <div class="stat-number">26×</div>
+        <div class="stat-label">
+          Guests who leave silently for every
+          one who speaks up
         </div>
       </div>
-    </section>
 
-    <section class="section condition" id="problem">
-      <div class="section-inner centered">
-        <p class="section-label">THE PROBLEM WE SOLVE</p>
-        <h2>Every independent hotel in America has Institutional Alzheimer's.</h2>
-        <div class="body-copy">
-          <p>The moment a shift ends — everything your team learned about a guest that day disappears. The room that was too cold. The name they prefer. The problem that was never fully resolved.</p>
-          <p>Gone.</p>
-          <p>26 guests stay silent for every one who complains. They do not call the front desk. They check out quietly. They book somewhere else. And they never say why.</p>
-          <p>A 200-room independent hotel loses an estimated $4.3 million to $13.6 million every year from guests who had a problem, said nothing, and never came back.</p>
-          <p>This is not a service problem.<br>It is an infrastructure problem.</p>
-          <p>And we built the infrastructure to fix it.</p>
+      <div class="stat-block">
+        <div class="stat-number">$13.6M</div>
+        <div class="stat-label">
+          Estimated annual loss at a single
+          200-room independent hotel
         </div>
       </div>
-    </section>
 
-    <section class="section category" id="category">
-      <div class="section-inner">
-        <p class="section-label">A CATEGORY WE INVENTED</p>
-        <h2>Guest Intelligence OS™</h2>
-        <div class="body-copy">
-          <p>Every hotel has a Property Management System for reservations. A CRM for marketing emails. A reputation tool for reviews.</p>
-          <p class="emphasis">None of them answer the question that matters most:</p>
-          <p>What does this guest need right now — based on everything that happened before?</p>
-          <p>Not after checkout. Not next week.<br>Right now. While they are still in the building.</p>
-          <p>We call this Guest Intelligence OS — the operating system of guest memory. It sits above every system a hotel already uses. It does not replace anything. It remembers what everything else forgets.</p>
-        </div>
-        <div class="category-grid">
-          <article class="category-item"><h3>Active Recovery</h3><p>Guest signals a problem. AI responds in seconds. Staff acts before checkout. The review never gets written.</p></article>
-          <article class="category-item"><h3>Persistent Memory</h3><p>Every guest interaction stored permanently. Every visit informed by the last one. Your team never makes the same mistake twice.</p></article>
-          <article class="category-item"><h3>Verified Intelligence</h3><p>Guest data confirmed regularly. Your team acts on accurate information. Not assumptions. Not stale records. Facts.</p></article>
+      <div class="stat-block">
+        <div class="stat-number">87%</div>
+        <div class="stat-label">
+          Of guests will not return after an
+          unsatisfactory experience
         </div>
       </div>
-    </section>
 
-    <section class="section stats" aria-label="Company statistics">
-      <div class="section-inner stats-grid">
-        <div><span class="stat-number" data-target="26">0</span><span class="stat-label">guests stay silent for every one who speaks up</span></div>
-        <div><span class="stat-number" data-target="13.6" data-prefix="$" data-suffix="M">$0</span><span class="stat-label">lost annually by a single 200-room hotel</span></div>
-        <div><span class="stat-number" data-target="22" data-suffix="%">0%</span><span class="stat-label">higher loyalty from prevention than recovery</span></div>
-        <div><span class="stat-number" data-target="2" data-suffix=" sec">0 sec</span><span class="stat-label">Haven AI responds to any guest complaint</span></div>
-      </div>
-    </section>
-
-    <section class="section products" id="work">
-      <div class="section-inner">
-        <p class="section-label">WHAT WE BUILT</p>
-        <h2>A portfolio built around one belief — independent operators deserve enterprise intelligence.</h2>
-        <div class="product-grid">
-          <article class="product-card"><span class="badge live">LIVE</span><h3>Haven Memory OS™</h3><p>The Guest Intelligence OS for independent hotels. Catches complaints before checkout. Remembers every guest forever. Prevents negative reviews before they are written.</p><a class="product-link" href="https://haven-mos.org">haven-mos.org</a><a class="card-cta" href="https://haven-mos.org">Start Free Trial →</a></article>
-          <article class="product-card"><span class="badge live">LIVE</span><h3>FreshSave Pro™</h3><p>AI-powered inventory and expiry management for grocery stores and food businesses. Reduces waste, saves money, keeps stock fresh.</p><a class="product-link" href="https://freshsavepro.com">freshsavepro.com</a><a class="card-cta" href="https://freshsavepro.com">Learn More →</a></article>
-          <article class="product-card"><span class="badge soon">COMING SOON</span><h3>Vigilant Revenue Protector™</h3><p>Financial reconciliation for businesses that process high invoice volumes. Detects mismatches. Prevents revenue leakage. Automates approvals.</p><a class="card-cta" href="#contact">Join Waitlist →</a></article>
-          <article class="product-card"><span class="badge development">IN DEVELOPMENT</span><h3>ForgetTruth™</h3><p>A new kind of platform built around information integrity and accountability. More details coming.</p><a class="card-cta" href="#contact">Stay Informed →</a></article>
-          <article class="product-card"><span class="badge development">IN DEVELOPMENT</span><h3>HTAP™</h3><p>Affordable housing transparency platform built for public accountability. FairKey creates an immutable audit trail for housing data — giving communities, advocates, and officials the visibility they deserve.</p><a class="card-cta" href="#contact">Stay Informed →</a></article>
+      <div class="stat-block">
+        <div class="stat-number">22%</div>
+        <div class="stat-label">
+          Higher loyalty from prevention systems
+          than even the best recovery programs
         </div>
       </div>
-    </section>
 
-    <section class="section about">
-      <div class="section-inner">
-        <p class="section-label">WHO WE ARE</p>
-        <h2>Building since 2019.<br>Shipping since 2026.</h2>
-        <div class="body-copy">
-          <p>HCCGSA LLC is a hospitality and food technology company founded in Philadelphia. We build software for the operators that enterprise giants ignore — independent hotels, boutique properties, and independent food businesses that compete with billion-dollar brands every day without billion-dollar budgets.</p>
-          <p>We do not build features. We build operating systems. Platforms that sit above what already exists and make everything underneath smarter.</p>
-          <p>Three years of building. One belief driving all of it:</p>
-          <p>Independent operators deserve the same intelligence as the largest chains in the world.</p>
-        </div>
-        <blockquote class="quote">“We did not build a guest feedback tool. We built the operating system of guest memory. There is a difference and it matters.”<cite>— Nathaniel Clarke, Founder — HCCGSA LLC</cite></blockquote>
+    </div>
+
+  </div>
+</section>
+
+<!-- GUEST INTELLIGENCE OS SECTION -->
+<section class="section-category" id="category">
+  <div class="section-inner">
+
+    <div class="section-eyebrow">A CATEGORY WE INVENTED</div>
+
+    <h2>Guest Intelligence OS™</h2>
+
+    <p>
+      Every hotel has a Property Management System for
+      reservations. A CRM for marketing emails. A reputation
+      tool for reviews.
+    </p>
+
+    <p>None of them answer the question that matters most:</p>
+
+    <blockquote class="category-quote">
+      What does this guest need right now — based on
+      everything that happened before?
+    </blockquote>
+
+    <p>
+      Not after checkout. Not next week.<br />
+      Right now. While they are still in the building.
+    </p>
+
+    <p>
+      We call this the Guest Intelligence OS™ — the
+      operating system of guest memory. It sits above every
+      system a hotel already uses. It does not replace
+      anything. It remembers what everything else forgets.
+    </p>
+
+    <!-- Three Pillars -->
+    <div class="pillars-row">
+
+      <div class="pillar">
+        <h3>Active Recovery</h3>
+        <p>
+          A guest signals a problem. AI responds in seconds.
+          Staff acts before checkout. The review never
+          gets written.
+        </p>
       </div>
-    </section>
 
-    <section class="section contact" id="contact">
-      <div class="section-inner">
-        <h2>Let's talk.</h2>
-        <p class="contact-sub">Whether you are a hotel operator, a potential partner, or someone who wants to understand what we are building — we want to hear from you.</p>
-        <div class="contact-grid">
-          <div class="contact-item"><a class="phone" href="tel:+12678489603">(267) 848-9603</a><small>Call or text — we answer</small></div>
-          <div class="contact-item"><a href="mailto:hello@haven-mos.org">hello@haven-mos.org</a><small>Response within one business day</small></div>
-          <div class="contact-item"><a href="https://haven-mos.org">haven-mos.org</a><small>See our flagship product</small></div>
+      <div class="pillar">
+        <h3>Persistent Memory</h3>
+        <p>
+          Every guest interaction is stored permanently.
+          Every visit is informed by the last one. Your
+          team never makes the same mistake twice.
+        </p>
+      </div>
+
+      <div class="pillar">
+        <h3>Verified Intelligence</h3>
+        <p>
+          Guest data is confirmed and trusted. Your team
+          acts on accurate information — not assumptions,
+          not stale records. Facts.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Guest Memory Score callout -->
+    <div class="gms-callout">
+
+      <div class="section-eyebrow">THE PRIMARY METRIC</div>
+
+      <h3>Guest Memory Score™</h3>
+
+      <p>
+        How do you know if your hotel is getting better
+        at remembering its guests?
+      </p>
+
+      <p>
+        The Guest Memory Score™ is the executive metric
+        that measures whether a property is recognizing
+        guests, assigning ownership of issues, acting in
+        time, and verifying recovery before checkout.
+        It is the first measurable standard for
+        institutional memory health in independent
+        hotel operations.
+      </p>
+
+      <p class="gms-attribution">
+        Developed by Nathaniel Clarke ·
+        ORCID:&nbsp;0009-0005-5311-1358 ·
+        HCCGSA LLC™ · 2025
+      </p>
+
+      <a
+        href="https://haven-mos.org"
+        class="btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Measure Your Memory Gap →
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section class="section-portfolio" id="work">
+  <div class="section-inner">
+
+    <div class="section-eyebrow">WHAT WE BUILT</div>
+
+    <h2>
+      A portfolio built around one belief —<br />
+      independent operators deserve
+      enterprise intelligence.
+    </h2>
+
+    <div class="portfolio-grid">
+
+      <!-- 1: Haven Memory OS — LIVE -->
+      <div class="product-card product-live">
+        <div class="product-status status-live">LIVE</div>
+        <h3>Haven Memory OS™</h3>
+        <p>
+          The Guest Intelligence OS™ for independent
+          hotels. Catches guest complaints before checkout.
+          Remembers every guest permanently. Prevents
+          negative reviews before they are written.
+          White-label ready — fully customizable for
+          every property. The hotel's brand stays
+          front and center. Haven works invisibly
+          behind it.
+        </p>
+        <div class="product-links">
+          <a
+            href="https://haven-mos.org"
+            target="_blank"
+            rel="noopener noreferrer"
+          >haven-mos.org</a>
+          <a
+            href="https://haven-mos.org"
+            class="btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Start Free Trial →</a>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer>
-    <div class="footer-main"><strong>HCCGSA LLC™</strong><div class="footer-center">haven-mos.org · freshsavepro.com · hello@haven-mos.org</div><div class="footer-right">© 2026 HCCGSA LLC™. All rights reserved.</div></div>
-    <div class="trademarks">Haven Memory OS™ · Guest Intelligence OS™ · Guest Memory Score™ · Haven Certified™ · FreshSave Pro™ · Vigilant Revenue Protector™ · ForgetTruth™ are trademarks of HCCGSA LLC™</div>
-  </footer>
+      <!-- 2: FreshSave Pro — LIVE -->
+      <div class="product-card product-live">
+        <div class="product-status status-live">LIVE</div>
+        <h3>FreshSave Pro™</h3>
+        <p>
+          AI-powered inventory and expiry management
+          for independent grocery stores and food
+          businesses. Reduces waste, saves money, and
+          keeps stock fresh. Built for operators who
+          cannot afford enterprise software but cannot
+          afford the losses that come without it.
+        </p>
+        <div class="product-links">
+          <a
+            href="https://freshsavepro.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >freshsavepro.com</a>
+          <a
+            href="https://freshsavepro.com"
+            class="btn-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Learn More →</a>
+        </div>
+      </div>
 
-  <script>
-    (() => {
-      const nav = document.querySelector('.site-nav');
-      const menu = document.querySelector('.menu-button');
-      const links = document.querySelector('.nav-right');
-      const setNav = () => nav.classList.toggle('over-hero', window.scrollY < 80);
-      window.addEventListener('scroll', setNav, { passive: true });
-      setNav();
-      menu.addEventListener('click', () => { const open = links.classList.toggle('open'); menu.setAttribute('aria-expanded', open); });
-      links.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }));
+      <!-- 3: EchoConnect — LIVE -->
+      <div class="product-card product-live">
+        <div class="product-status status-live">LIVE</div>
+        <h3>EchoConnect™</h3>
+        <p>
+          Staff wellness and emotional intelligence
+          platform for hospitality teams. Real-time
+          mood detection, Guardian badge system, team
+          leaderboard, and wellness reporting. Built
+          for the people who take care of guests —
+          because a hotel cannot remember its guests
+          if its staff cannot sustain themselves.
+        </p>
+        <div class="product-links">
+          <a href="#contact" class="btn-secondary">
+            Learn More →
+          </a>
+        </div>
+      </div>
 
-      const canvas = document.getElementById('particles');
-      const context = canvas.getContext('2d');
-      const particles = [];
-      const resize = () => { canvas.width = canvas.offsetWidth * devicePixelRatio; canvas.height = canvas.offsetHeight * devicePixelRatio; context.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0); };
-      const makeParticles = () => { particles.length = 0; const count = 60; for (let index = 0; index < count; index += 1) particles.push({ x: Math.random() * canvas.offsetWidth, y: Math.random() * canvas.offsetHeight, radius: Math.random() * 1.5 + .35, speed: Math.random() * .28 + .08, opacity: Math.random() * .12 + .08 }); };
-      const animateParticles = () => { const width = canvas.offsetWidth; const height = canvas.offsetHeight; context.clearRect(0, 0, width, height); particles.forEach(particle => { particle.y -= particle.speed; if (particle.y < -4) { particle.y = height + 4; particle.x = Math.random() * width; } context.beginPath(); context.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2); context.fillStyle = `rgba(201,168,76,${particle.opacity})`; context.fill(); }); requestAnimationFrame(animateParticles); };
-      window.addEventListener('resize', () => { resize(); makeParticles(); }); resize(); makeParticles(); animateParticles();
+      <!-- 4: Vigilant Revenue Protector — COMING SOON -->
+      <div class="product-card product-coming-soon">
+        <div class="product-status status-coming">
+          COMING SOON
+        </div>
+        <h3>Vigilant Revenue Protector™</h3>
+        <p>
+          Financial reconciliation for businesses that
+          process high invoice volumes. Detects
+          mismatches between invoices and receipts.
+          Prevents revenue leakage. Automates approval
+          workflows. Powered by Plaid and Moov. Built
+          for operators who are losing money they
+          do not know they are losing.
+        </p>
+        <div class="product-links">
+          <a href="#contact" class="btn-secondary">
+            Join Waitlist →
+          </a>
+        </div>
+      </div>
 
-      const counters = document.querySelectorAll('.stat-number');
-      const format = (element, value) => { const target = Number(element.dataset.target); const decimals = target % 1 ? 1 : 0; const prefix = element.dataset.prefix || ''; const suffix = element.dataset.suffix || ''; element.textContent = prefix + (decimals ? value.toFixed(1) : Math.round(value)) + suffix; };
-      const runCounter = element => { const target = Number(element.dataset.target); const start = performance.now(); const duration = 1200; const tick = now => { const progress = Math.min((now - start) / duration, 1); const eased = 1 - Math.pow(1 - progress, 3); format(element, target * eased); if (progress < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); };
-      const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting && !entry.target.dataset.seen) { entry.target.dataset.seen = 'true'; runCounter(entry.target); } }), { threshold: .4 });
-      counters.forEach(counter => observer.observe(counter));
-    })();
-  </script>
+      <!-- 5: ForgetTruth — IN DEVELOPMENT -->
+      <div class="product-card product-development">
+        <div class="product-status status-dev">
+          IN DEVELOPMENT
+        </div>
+        <h3>ForgetTruth™</h3>
+        <p>
+          An information integrity and accountability
+          platform. Flags stale, contradictory, missing,
+          or unverified data inside hotel and business
+          operations. The data-trust layer of the Guest
+          Intelligence OS™. Answers the question every
+          operator eventually asks: can we actually
+          trust what we think we know?
+        </p>
+        <div class="product-links">
+          <a href="#contact" class="btn-secondary">
+            Stay Informed →
+          </a>
+        </div>
+      </div>
+
+      <!-- 6: HTAP / FairKey — IN DEVELOPMENT -->
+      <div class="product-card product-development">
+        <div class="product-status status-dev">
+          IN DEVELOPMENT
+        </div>
+        <h3>HTAP™ / FairKey™</h3>
+        <p>
+          Affordable housing transparency platform
+          built for public accountability. Creates an
+          immutable audit trail for housing data —
+          giving communities, advocates, and officials
+          the visibility they deserve. Built on the
+          same accountability architecture that drives
+          every HCCGSA LLC product.
+        </p>
+        <div class="product-links">
+          <a href="#contact" class="btn-secondary">
+            Stay Informed →
+          </a>
+        </div>
+      </div>
+
+      <!-- 7: 2050 Network — IN DEVELOPMENT -->
+      <div class="product-card product-development">
+        <div class="product-status status-dev">
+          IN DEVELOPMENT
+        </div>
+        <h3>2050 Network™</h3>
+        <p>
+          A learning and workforce development platform
+          for the next generation of hospitality and
+          civic technology leaders. Built on the belief
+          that the operators of 2050 need different
+          tools, different training, and a different
+          standard of accountability than anything
+          currently available.
+        </p>
+        <div class="product-links">
+          <a href="#contact" class="btn-secondary">
+            Stay Informed →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER SECTION -->
+<section class="section-newsletter" id="newsletter">
+  <div class="section-inner section-inner--narrow">
+
+    <div class="section-eyebrow">THE RESEARCH NEWSLETTER</div>
+
+    <h2>The Memory Gap™</h2>
+
+    <p class="newsletter-issue-label">
+      Issue 001 — Now Live
+    </p>
+
+    <p>
+      A newsletter about the most expensive problem in
+      independent hospitality that nobody had a name for —
+      until now.
+    </p>
+
+    <p>
+      Every edition covers one thing: what independent
+      hotels lose when they forget their guests, and what
+      the research says about fixing it. No product pitches.
+      No filler. Just the research, the numbers, and the
+      implications for your property.
+    </p>
+
+    <div class="newsletter-ctas">
+      <a
+        href="https://haven-mos.org"
+        class="btn-primary"
+        target="_blank"
+        rel="noopener noreferrer"
+      >Read Issue 001 →</a>
+      <a href="#contact" class="btn-secondary">
+        Subscribe Free →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="section-about" id="about">
+  <div class="section-inner">
+
+    <div class="section-eyebrow">WHO WE ARE</div>
+
+    <h2>
+      Building since 2019.<br />
+      Shipping since 2026.
+    </h2>
+
+    <div class="about-grid">
+
+      <!-- Logo column -->
+      <div class="about-logo-col">
+        <img
+          src="/assets/hccgsa_branded.png"
+          alt="HCCGSA LLC — Hotel Chamber of Commerce,
+               Guest Services Advocacy"
+          class="about-logo"
+        />
+      </div>
+
+      <!-- Bio column -->
+      <div class="about-bio-col">
+
+        <p>
+          Nathaniel Clarke is a Hospitality Guest
+          Intelligence Architect and Advocate, and the
+          Founder and Chief Executive Officer of
+          HCCGSA LLC™ — Hotel Chamber of Commerce,
+          Guest Services Advocacy.
+        </p>
+
+        <p>
+          Clarke is an ORCID-registered researcher
+          (0009-0005-5311-1358) and the originating author
+          of The Memory Gap™ framework, the Institutional
+          Memory Loss diagnostic model, and the Guest
+          Intelligence OS™ category definition — the
+          foundational research behind Haven Memory OS™.
+        </p>
+
+        <p>
+          He operates under the professional methodology
+          ARCHITEK N ADVOCACY™: design the accountability
+          system, assign ownership, and verify that
+          recovery happened.
+        </p>
+
+        <p>
+          HCCGSA LLC is a hospitality and technology company
+          founded in Philadelphia in 2019. We build operating
+          systems for the independent operators that
+          enterprise giants ignore — boutique hotels and
+          independent businesses that compete with
+          billion-dollar brands every day without
+          billion-dollar budgets.
+        </p>
+
+        <p>
+          We do not build features. We build operating
+          systems. Platforms that sit above what already
+          exists and make everything underneath smarter.
+        </p>
+
+        <!-- Credentials block -->
+        <div class="credentials-block">
+
+          <div class="credential">
+            <span class="credential-label">
+              ORCID Registered Researcher
+            </span>
+            <a
+              href="https://orcid.org/0009-0005-5311-1358"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="credential-value credential-link"
+            >
+              0009-0005-5311-1358
+            </a>
+          </div>
+
+          <div class="credential">
+            <span class="credential-label">
+              Published Frameworks
+            </span>
+            <ul class="credential-list">
+              <li>The Memory Gap™ (2024)</li>
+              <li>Guest Intelligence OS™ (2025)</li>
+              <li>
+                Haven Memory OS™ Platform
+                Architecture (2025)
+              </li>
+              <li>
+                Institutional Memory Loss
+                in Hospitality (2026)
+              </li>
+            </ul>
+          </div>
+
+          <div class="credential">
+            <span class="credential-label">
+              Professional Methodology
+            </span>
+            <span class="credential-value">
+              ARCHITEK N ADVOCACY™
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Founder quote -->
+    <blockquote class="founder-quote">
+      <p>
+        "We did not build a guest feedback tool.
+        We built the operating system of guest memory.
+        There is a difference — and it matters."
+      </p>
+      <cite>
+        — Nathaniel Clarke<br />
+        Founder &amp; CEO, HCCGSA LLC™<br />
+        ARCHITEK N ADVOCACY™
+      </cite>
+    </blockquote>
+
+    <!-- TERMINOLOGY STATEMENT
+         ENFORCEMENT GATE: VITE_TERMINOLOGY_APPROVED=true
+         required in Cloudflare Pages environment variables.
+         This section is stripped from production build
+         unless the variable is explicitly set.
+         Default: hidden. Never shown without approval.
+         Medical and legal review required before enabling.
+    -->
+    <div
+      id="terminology-statement"
+      class="terminology-statement"
+      hidden
+    >
+      <div class="section-eyebrow">TERMINOLOGY NOTE</div>
+      <p>
+        <em>"Institutional Alzheimer's"</em> is an
+        organizational metaphor used deliberately by
+        HCCGSA LLC to name the pattern of systemic
+        operational memory loss in hotel environments.
+        It is not presented as a clinically validated
+        diagnosis or a direct medical equivalence.
+        HCCGSA LLC uses this language to give a precise,
+        memorable name to a real organizational failure —
+        not to make claims about the disease itself.
+      </p>
+      <p>
+        The Memory Gap™ and Institutional Memory Loss
+        describe the same phenomenon at different levels
+        of specificity. All three terms are part of the
+        HCCGSA LLC research framework authored by
+        Nathaniel Clarke,
+        ORCID:&nbsp;0009-0005-5311-1358.
+      </p>
+      <p class="terminology-attribution">
+        — Nathaniel Clarke<br />
+        ORCID: 0009-0005-5311-1358<br />
+        Founder &amp; CEO, HCCGSA LLC™<br />
+        ARCHITEK N ADVOCACY™
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- Terminology gate script -->
+<script>
+  (function() {
+    var approved =
+      typeof __TERMINOLOGY_APPROVED__ !== 'undefined'
+      && __TERMINOLOGY_APPROVED__ === true;
+    if (approved) {
+      var el = document.getElementById(
+        'terminology-statement'
+      );
+      if (el) { el.removeAttribute('hidden'); }
+    }
+  })();
+</script>
+
+<!-- CONTACT SECTION -->
+<section class="section-contact" id="contact">
+  <div class="section-inner section-inner--narrow">
+
+    <div class="section-eyebrow">LET'S TALK</div>
+
+    <h2>
+      Whether you are a hotel operator, a potential
+      partner, an investor, or a researcher —
+      we want to hear from you.
+    </h2>
+
+    <div class="contact-grid">
+
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <a
+          href="tel:+12678489603"
+          class="contact-value"
+        >(267) 848-9603</a>
+        <span class="contact-note">
+          Call or text — we answer
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a
+          href="mailto:hotelchamberofcommerce@gmail.com"
+          class="contact-value"
+        >hotelchamberofcommerce@gmail.com</a>
+        <span class="contact-note">
+          Response within one business day
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label">Flagship Product</span>
+        <a
+          href="https://haven-mos.org"
+          class="contact-value"
+          target="_blank"
+          rel="noopener noreferrer"
+        >haven-mos.org</a>
+        <span class="contact-note">
+          14-day free trial · No credit card required
+        </span>
+      </div>
+
+      <div class="contact-item">
+        <span class="contact-label">
+          Research Profile
+        </span>
+        <a
+          href="https://orcid.org/0009-0005-5311-1358"
+          class="contact-value"
+          target="_blank"
+          rel="noopener noreferrer"
+        >orcid.org/0009-0005-5311-1358</a>
+        <span class="contact-note">
+          ORCID Registered Researcher
+        </span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Top grid -->
+    <div class="footer-grid">
+
+      <!-- Column 1: Brand -->
+      <div class="footer-col">
+        <img
+          src="/assets/hccgsa_branded.png"
+          alt="HCCGSA LLC Seal"
+          class="footer-logo"
+        />
+        <div class="footer-brand-name">HCCGSA LLC™</div>
+        <div class="footer-brand-sub">
+          Hotel Chamber of Commerce<br />
+          Guest Services Advocacy
+        </div>
+        <div class="footer-brand-sub">
+          Philadelphia, PA · Est. 2019
+        </div>
+        <div class="footer-signature">
+          ARCHITEK N ADVOCACY™
+        </div>
+      </div>
+
+      <!-- Column 2: Products -->
+      <div class="footer-col">
+        <div class="footer-col-label">Products</div>
+        <a
+          href="https://haven-mos.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Haven Memory OS™</a>
+        <a
+          href="https://freshsavepro.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >FreshSave Pro™</a>
+        <a href="#contact">EchoConnect™</a>
+        <a href="#contact">
+          Vigilant Revenue Protector™
+        </a>
+        <a href="#contact">ForgetTruth™</a>
+        <a href="#contact">HTAP™ / FairKey™</a>
+        <a href="#contact">2050 Network™</a>
+      </div>
+
+      <!-- Column 3: Founder -->
+      <div class="footer-col">
+        <div class="footer-col-label">Founder</div>
+        <div class="footer-founder-name">
+          Nathaniel Clarke
+        </div>
+        <div class="footer-founder-title">
+          Founder &amp; CEO, HCCGSA LLC™
+        </div>
+        <a
+          href="https://orcid.org/0009-0005-5311-1358"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-orcid"
+        >ORCID: 0009-0005-5311-1358</a>
+        <a
+          href="mailto:hotelchamberofcommerce@gmail.com"
+          class="footer-contact-link"
+        >hotelchamberofcommerce@gmail.com</a>
+        <a
+          href="tel:+12678489603"
+          class="footer-contact-link"
+        >(267) 848-9603</a>
+        <a
+          href="https://haven-mos.org"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="footer-contact-link"
+        >haven-mos.org</a>
+      </div>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-rule"></div>
+
+    <!-- Trademark line -->
+    <div class="footer-trademarks">
+      Haven Memory OS™ · Guest Intelligence OS™ ·
+      The Memory Gap™ · Guest Memory Score™ ·
+      Haven Certified™ · FreshSave Pro™ ·
+      EchoConnect™ · Vigilant Revenue Protector™ ·
+      ForgetTruth™ · HTAP™ · FairKey™ ·
+      2050 Network™ · ARCHITEK N ADVOCACY™
+      are trademarks of HCCGSA LLC™
+    </div>
+
+    <!-- Copyright -->
+    <div class="footer-copyright">
+      © 2026 HCCGSA LLC™. All rights reserved.
+    </div>
+
+  </div>
+</footer>
+
 </body>
 </html>
