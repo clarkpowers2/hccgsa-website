@@ -9,3 +9,6 @@
 
 /hccgsa_seal.png
   Cache-Control: public, max-age=31536000, immutable
+
+/hccgsa_hospitality_advocacy_seal.png
+  Cache-Control: public, max-age=31536000, immutable
