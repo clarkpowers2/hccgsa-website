@@ -62,8 +62,8 @@ export default function FounderStory() {
           <div className="eyebrow mb-5">Founder story &amp; origin</div>
           <h2 className="text-3xl font-bold leading-tight md:text-5xl">The Problem No One Had Named</h2>
           <figure className="mx-auto mt-9 max-w-xs md:max-w-sm">
-            <img src="/nathaniel-clarke.png" alt="Nathaniel Clarke, founder of HCCGSA LLC, receiving the &quot;Saving the Youth&quot; honor at the Community Initiative Awards" className="w-full rounded-lg border border-haven-gold/25 shadow-lg" width={1148} height={1370} />
-            <figcaption className="mt-3 text-sm italic leading-6 text-white/55">Nathaniel Clarke received the &quot;Saving the Youth&quot; honor at the Community Initiative Awards.</figcaption>
+            <img src="/nathaniel-clarke.png" alt="Nathaniel Clarke, founder of HCCGSA LLC, receiving the &quot;Saving the Youth&quot; honor at the Recreation Center Awards" className="w-full rounded-lg border border-haven-gold/25 shadow-lg" width={1148} height={1370} />
+            <figcaption className="mt-3 text-sm italic leading-6 text-white/55">Nathaniel Clarke received the &quot;Saving the Youth&quot; honor at the Recreation Center Awards.</figcaption>
           </figure>
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-white/75">Every major hotel brand in the world has a loyalty program. Independent hotels have none of that infrastructure — and every time a guest checks in, the hotel starts from zero. Nathaniel Clarke called this <strong className="text-white">Institutional Alzheimer&apos;s</strong>. Then he built the solution.</p>
         </div>
